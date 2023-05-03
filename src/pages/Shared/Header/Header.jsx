@@ -4,9 +4,9 @@ import { Form, NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <Navbar bg="light" expand="lg" className='py-3'>
+        <Navbar bg="dark" expand="lg" className='px-2 py-3 '>
             <Container fluid>
-                <Navbar.Brand href="#" className='text-success fw-bold fs-4'>Best Recipe</Navbar.Brand>
+                <Navbar.Brand href="#" className='text-secondary fw-bold fs-2'>Best Recipe</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -17,7 +17,7 @@ const Header = () => {
                         <NavLink
                             to="/"
                             className={({ isActive }) =>
-                                isActive ? "fw-bold me-3 text-success text-decoration-none" : "text-decoration-none text-black"
+                                isActive ? "fw-bold me-3 text-danger text-decoration-none" : "text-decoration-none me-3 text-white"
                             }
                         >
                             Home
@@ -25,13 +25,13 @@ const Header = () => {
                         <NavLink
                             to="/blog"
                             className={({ isActive }) =>
-                                isActive ? "fw-bold text-success text-decoration-none" : "text-decoration-none text-black"
+                                isActive ? "fw-bold me-3 text-danger text-decoration-none" : "text-decoration-none me-3 text-white"
                             }
                         >
                             Blog
                         </NavLink>
                     </Nav>
-                    <Button variant="outline-success">Login</Button>
+                    <Button variant="outline-secondary">Login</Button>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
