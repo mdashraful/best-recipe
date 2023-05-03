@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <Row xs={1} md={2} lg={3} className="g-4">
+            <Row xs={1} md={2} lg={3} className="g-4 my-4">
                 {
                     chefsData.map(chefs =>
                         <ChefCards key={chefs.id} chefs={chefs}>

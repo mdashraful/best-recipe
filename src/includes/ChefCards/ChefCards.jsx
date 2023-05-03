@@ -1,23 +1,26 @@
 import React from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 
-const ChefCards = () => {
+const ChefCards = ({ chefs }) => {
+    const { id, name, image, experience, numberOfRecipe, likes, description } = chefs;
+
     return (
-
         <Col>
-            <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
+            <Card className='rounded-0'>
+                <Card.Img variant="top" src={image} style={{ height: "250px" }} className='rounded-0' />
                 <Card.Body>
-                    <Card.Title>Card title</Card.Title>
+                    <Card.Title className='fs-3 mb-3'>{name}</Card.Title>
                     <Card.Text>
-                        This is a longer card with supporting text below as a natural
-                        lead-in to additional content. This content is a little bit
-                        longer.
+                        <p className='fw-semibold'>Experience: <span className='fw-normal'>{experience}</span></p>
+                        <p className='fw-semibold'>Recipes: <span className='fw-normal'>{numberOfRecipe}</span></p>
+                        <p className='fw-semibold'>Likes: <span className='fw-normal'>{likes}</span></p>
                     </Card.Text>
+                    <div className='text-center'>
+                        <Button className='btn btn-secondary'>View Recipe</Button>
+                    </div>
                 </Card.Body>
             </Card>
         </Col>
-
     );
 };
 
