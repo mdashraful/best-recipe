@@ -8,7 +8,9 @@ const Main = () => {
     return (
         <Container>
             <Header></Header>
-            <Outlet></Outlet>
+            <div className='min-vh-100'>
+                <Outlet></Outlet>
+            </div>
             <Footer></Footer>
         </Container>
     );

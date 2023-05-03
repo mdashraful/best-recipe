@@ -1,0 +1,10 @@
+.banner {
+  height: 750px;
+  background-color: #ffffff;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.banner img {
+  height: 100%;
+}

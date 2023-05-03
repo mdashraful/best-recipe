@@ -4,7 +4,7 @@ import { Form, NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" className='py-3'>
             <Container fluid>
                 <Navbar.Brand href="#" className='text-success fw-bold fs-4'>Best Recipe</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
