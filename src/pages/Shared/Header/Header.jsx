@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-import { Form, NavLink } from 'react-router-dom';
+import { Form, Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -31,7 +31,11 @@ const Header = () => {
                             Blog
                         </NavLink>
                     </Nav>
-                    <Button variant="outline-secondary">Login</Button>
+                    <Link to='/login'>
+                        <Button variant="outline-secondary">
+                            Login
+                        </Button>
+                    </Link>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
