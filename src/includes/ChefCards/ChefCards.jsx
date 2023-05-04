@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ChefCards = ({ chefs }) => {
     const { id, name, image, experience, numberOfRecipe, likes, description } = chefs;
@@ -11,12 +12,14 @@ const ChefCards = ({ chefs }) => {
                 <Card.Body>
                     <Card.Title className='fs-3 mb-3'>{name}</Card.Title>
                     <Card.Text>
-                        <p className='fw-semibold'>Experience: <span className='fw-normal'>{experience}</span></p>
-                        <p className='fw-semibold'>Recipes: <span className='fw-normal'>{numberOfRecipe}</span></p>
-                        <p className='fw-semibold'>Likes: <span className='fw-normal'>{likes}</span></p>
+                        <span className='fw-semibold d-block'>Experience: <span className='fw-normal'>{experience}</span></span>
+                        <span className='fw-semibold d-block'>Recipes: <span className='fw-normal'>{numberOfRecipe}</span></span>
+                        <span className='fw-semibold d-block'>Likes: <span className='fw-normal'>{likes}</span></span>
                     </Card.Text>
                     <div className='text-center'>
-                        <Button className='btn btn-secondary'>View Recipe</Button>
+                        <Link to={`/chef/${id}`}>
+                            <Button className='btn btn-secondary w-100 fw-semibold rounded-0'>View Recipe</Button>
+                        </Link>
                     </div>
                 </Card.Body>
             </Card>

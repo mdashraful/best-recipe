@@ -8,7 +8,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 
 const Home = () => {
     const chefsData = useLoaderData();
-    console.log(chefsData);
+    // console.log(chefsData);
     const name = useContext(AuthContext)
     return (
         <div>
