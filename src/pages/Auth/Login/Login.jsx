@@ -3,12 +3,11 @@ import { Button, Container, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
-
 const Login = () => {
     const { loginUser, googleLogin, githubLogin } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location?.state?.from?.pathname || '/'
+    const from = location?.state?.from?.pathname || '/';
 
 
     const handleLogin = (event) => {
