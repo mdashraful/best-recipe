@@ -7,6 +7,7 @@ import { Col, Row } from 'react-bootstrap';
 import { AuthContext } from '../../../providers/AuthProvider';
 import AdSection from '../../../includes/AdSection/AdSection';
 import Marquee from "react-fast-marquee";
+import PopularSection from '../../../includes/PopularSection/PopularSection';
 
 const Home = () => {
     const chefsData = useLoaderData();
@@ -42,15 +43,7 @@ const Home = () => {
                     <Marquee>
                         {
                             popularRecipes.map(recipe =>
-                                <div class="card bg-dark text-white me-3 my-3 rounded-0" style={{ width: "250px" }}>
-                                    <img class="card-img rounded-0" src={recipe.recipeImg} alt="Card image" />
-                                    <div class="card-img-overlay">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Last updated 3 mins ago</p>
-
-                                    </div>
-                                    <button className='btn btn-secondary rounded-0'>View</button>
-                                </div>
+                                <PopularSection key={recipe.id} recipe={recipe}></PopularSection>
                             )
                         }
                     </Marquee>
