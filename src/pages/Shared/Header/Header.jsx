@@ -1,8 +1,10 @@
-import React from 'react';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { Form, Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Header = () => {
+    const { user, logout } = useContext(AuthContext);
     return (
         <Navbar bg="dark" expand="lg" className='px-2 py-3 '>
             <Container fluid>
@@ -31,11 +33,22 @@ const Header = () => {
                             Blog
                         </NavLink>
                     </Nav>
-                    <Link to='/login'>
-                        <Button variant="outline-secondary">
-                            Login
-                        </Button>
-                    </Link>
+                    {
+                        user ? <>
+                            <div className='me-3'>
+                                <Image src={user.photoURL} title={user.displayName} style={{ height: "50px" }} alt="" roundedCircle />
+                            </div>
+                            <Link>
+                                <Button onClick={logout} variant="outline-secondary">
+                                    Logout
+                                </Button>
+                            </Link>
+                        </> : <Link to='/login'>
+                            <Button variant="outline-secondary">
+                                Login
+                            </Button>
+                        </Link>
+                    }
                 </Navbar.Collapse>
             </Container>
         </Navbar>

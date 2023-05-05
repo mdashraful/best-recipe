@@ -5,6 +5,7 @@ import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
 import SingleChef from "../pages/SingleChef/SingleChef";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Blog from "../pages/Blog/Blog";
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
                 path: '/chef/:id',
                 element: <SingleChef></SingleChef>,
                 loader: ({ params }) => fetch(`https://best-recipe-server-mdashraful.vercel.app/chef/${params.id}`)
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
         ]
     }

@@ -21,10 +21,10 @@ const Register = () => {
             setError('Your password has at least 8 character');
             return;
         }
-        if (/(?=.*[0-9])/.test(password)) {
-            setError('Your password has at least 1 number');
-            return;
-        }
+        // if (!password) {
+        //     setError('Your password has at least 1 number');
+        //     return;
+        // }
 
         createUser(email, password)
             .then(result => {
