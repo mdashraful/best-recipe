@@ -1,16 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Home.css';
 import Banner from '../../../includes/Banner/Banner';
 import { useLoaderData } from 'react-router-dom';
 import ChefCards from '../../../includes/ChefCards/ChefCards';
-import { Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { AuthContext } from '../../../providers/AuthProvider';
 import AdSection from '../../../includes/AdSection/AdSection';
+import Marquee from "react-fast-marquee";
 
 const Home = () => {
     const chefsData = useLoaderData();
-    // console.log(chefsData);
-    const name = useContext(AuthContext)
+    const [popularRecipes, setPopularRecipes] = useState([]);
+
+    useEffect(() => {
+        fetch('https://best-recipe-server-mdashraful.vercel.app/most-popular-recipe')
+            .then(res => res.json())
+            .then(data => setPopularRecipes(data))
+            .catch(error => console.error(error))
+    }, [])
+
     return (
         <div>
             <Banner></Banner>
@@ -28,6 +36,26 @@ const Home = () => {
                 </Row>
             </div>
             <AdSection></AdSection>
+            <div>
+                <p className='fs-2 fw-semibold text-center mt-5'><u>Popular Recipes</u></p>
+                <div className='my-3'>
+                    <Marquee>
+                        {
+                            popularRecipes.map(recipe =>
+                                <div class="card bg-dark text-white me-3 my-3 rounded-0" style={{ width: "250px" }}>
+                                    <img class="card-img rounded-0" src={recipe.recipeImg} alt="Card image" />
+                                    <div class="card-img-overlay">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">Last updated 3 mins ago</p>
+
+                                    </div>
+                                    <button className='btn btn-secondary rounded-0'>View</button>
+                                </div>
+                            )
+                        }
+                    </Marquee>
+                </div>
+            </div>
         </div>
     );
 };
