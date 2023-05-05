@@ -10,7 +10,7 @@ const SingleChef = () => {
     const chefData = useLoaderData();
     const [recipes, setRecipes] = useState([]);
     const { id, name, description, experience, numberOfRecipe, likes, image } = chefData;
-    const [favorite, setFavorite] = useState(false);
+    // const [favorite, setFavorite] = useState(false);
 
     // console.log(chefData);
     useEffect(() => {
@@ -21,9 +21,18 @@ const SingleChef = () => {
     // console.log(recipes);
 
     const handleFavorite = (id) => {
+        const favArray = [];
+        const stored = JSON.parse(localStorage.getItem('favoriteId'));
+        if (stored) {
+            const newStored = [...stored, id];
+            // stored.push(id);
+            localStorage.setItem('favoriteId', JSON.stringify(newStored))
+        } else {
+            favArray.push(id);
+            localStorage.setItem('favoriteId', JSON.stringify(favArray));
+        }
         toast('The Recipe is Your Favorite');
-        console.log(id);
-        setFavorite(true);
+        // setFavorite(true);
     }
 
     return (
@@ -53,7 +62,7 @@ const SingleChef = () => {
             <Row xs={1} md={2} lg={3} className="g-4 my-3">
                 {
                     recipes.map((recipe, index) =>
-                        <RecipeCard key={index} recipe={recipe} handleFavorite={handleFavorite} favorite={favorite}></RecipeCard>
+                        <RecipeCard key={index} recipe={recipe} handleFavorite={handleFavorite}></RecipeCard>
                     )
                 }
             </Row>

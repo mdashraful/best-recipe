@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 
 const RecipeCard = ({ recipe, handleFavorite, favorite }) => {
     // const [favorite, setFavorite] = useState(false);
-
     return (
         <div>
             <Col>
