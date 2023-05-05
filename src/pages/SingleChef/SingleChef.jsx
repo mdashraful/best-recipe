@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { useLoaderData } from 'react-router-dom';
+import { Rating } from '@smastrom/react-rating'
+import { BsFillBookmarkHeartFill } from "react-icons/bs";
+import toast from 'react-hot-toast';
 
 const SingleChef = () => {
     const chefData = useLoaderData();
     const [recipes, setRecipes] = useState([]);
     const { id, description, experience, numberOfRecipe, likes, image } = chefData;
+    const [favorite, setFavorite] = useState(false);
+
     // console.log(chefData);
     useEffect(() => {
         fetch(`https://best-recipe-server-mdashraful.vercel.app/recipes/${id}`)
             .then(res => res.json())
             .then(data => setRecipes(data))
     }, []);
-    console.log(recipes);
+    // console.log(recipes);
+
+    const handleFavorite = () => {
+        toast('The Recipe is Your Favorite');
+        setFavorite(true);
+    }
     return (
         <div>
             <Row xs={1} md={2} className="g-4 my-3">
@@ -45,6 +55,10 @@ const SingleChef = () => {
                                 <Card.Img variant="top" src={recipe.recipeImg} />
                                 <Card.Body>
                                     <Card.Title>{recipe.recipeName}</Card.Title>
+                                    <div className='mb-2 d-flex justify-content-between'>
+                                        <Rating style={{ maxWidth: 150 }} value={recipe.rating} readOnly />
+                                        <Button onClick={handleFavorite} disabled={favorite} className='btn btn-danger'><BsFillBookmarkHeartFill /></Button>
+                                    </div>
                                     <Card.Text>
                                         <ol className='ms-0'>
                                             {
