@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, lazy, Suspense } from 'react';
 import './Home.css';
 import Banner from '../../../includes/Banner/Banner';
 import { useLoaderData } from 'react-router-dom';
-import ChefCards from '../../../includes/ChefCards/ChefCards';
+// import ChefCards from '../../../includes/ChefCards/ChefCards';
 import { Col, Row } from 'react-bootstrap';
 import { AuthContext } from '../../../providers/AuthProvider';
 import AdSection from '../../../includes/AdSection/AdSection';
 import Marquee from "react-fast-marquee";
 import PopularSection from '../../../includes/PopularSection/PopularSection';
+
+const ChefCards = lazy(() => import('../../../includes/ChefCards/ChefCards'));
 
 const Home = () => {
     const chefsData = useLoaderData();
@@ -27,14 +29,16 @@ const Home = () => {
                 <div className=''>
                     <p className='fs-1 fw-semibold text-center'><u>Top Chefs in The World</u></p>
                 </div>
-                <Row xs={1} md={2} lg={3} className="g-4 my-1">
-                    {
-                        chefsData.map(chefs =>
-                            <ChefCards key={chefs.id} chefs={chefs}>
-                            </ChefCards>
-                        )
-                    }
-                </Row>
+                <Suspense fallback={<div className='text-center'>Loading...</div>}>
+                    <Row xs={1} md={2} lg={3} className="g-4 my-1">
+                        {
+                            chefsData.map(chefs =>
+                                <ChefCards key={chefs.id} chefs={chefs}>
+                                </ChefCards>
+                            )
+                        }
+                    </Row>
+                </Suspense>
             </div>
             <AdSection></AdSection>
             <div>
