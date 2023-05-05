@@ -8,7 +8,9 @@ const Header = () => {
     return (
         <Navbar bg="dark" expand="lg" className='px-2 py-3 '>
             <Container fluid>
-                <Navbar.Brand href="#" className='text-secondary fw-bold fs-2'>Best Recipe</Navbar.Brand>
+                <Link to='/'>
+                    <Navbar.Brand className='text-secondary fw-bold fs-2'>Best Recipe</Navbar.Brand>
+                </Link>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
