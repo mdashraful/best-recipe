@@ -4,8 +4,11 @@ import { Rating } from '@smastrom/react-rating'
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
 import toast from 'react-hot-toast';
 
-const RecipeCard = ({ recipe, handleFavorite, favorite }) => {
-    // const [favorite, setFavorite] = useState(false);
+const RecipeCard = ({ recipe, handleFavorite }) => {
+    const [favorite, setFavorite] = useState(false);
+    const disableButton = () => {
+        setFavorite(true);
+    }
     return (
         <div>
             <Col>
@@ -19,7 +22,9 @@ const RecipeCard = ({ recipe, handleFavorite, favorite }) => {
                         </Card.Title>
                         <div className='mb-3 d-flex justify-content-between'>
                             <Rating style={{ maxWidth: 150 }} value={recipe.rating} readOnly />
-                            <Button onClick={() => handleFavorite(recipe.id)} className='btn btn-danger'><BsFillBookmarkHeartFill /></Button>
+                            <div onClick={() => handleFavorite(recipe.id)}>
+                                <Button onClick={disableButton} disabled={favorite} className='btn btn-danger'><BsFillBookmarkHeartFill /></Button>
+                            </div>
                         </div>
                         <Card.Text>
                             {
